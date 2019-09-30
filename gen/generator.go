@@ -23,6 +23,7 @@ type Options struct {
 	EnumsAsInts  bool
 	EmitDefaults bool
 	OrigName     bool
+	JSONPBLib    string
 }
 
 // New returns a generator which generates Go files that implement

@@ -21,6 +21,7 @@ var (
 	enumsAsInts  = flag.Bool("enums_as_ints", false, "render enums as integers as opposed to strings")
 	emitDefaults = flag.Bool("emit_defaults", false, "render fields with zero values")
 	origName     = flag.Bool("orig_name", false, "use original (.proto) name for fields")
+	jsonpbLib    = flag.String("jsonpb", "github.com/golang/protobuf/jsonpb", "The Go jsonpb library to use")
 )
 
 func main() {
@@ -63,6 +64,7 @@ func main() {
 		EnumsAsInts:  *enumsAsInts,
 		EmitDefaults: *emitDefaults,
 		OrigName:     *origName,
+		JSONPBLib:    *jsonpbLib,
 	})
 	if err := reg.Load(req); err != nil {
 		emitError(err)

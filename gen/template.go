@@ -15,7 +15,8 @@ func applyTemplate(f *descriptor.File, opts Options) (string, error) {
 	w := bytes.NewBuffer(nil)
 
 	if err := headerTemplate.Execute(w, tplHeader{
-		File: f,
+		File:    f,
+		Options: opts,
 	}); err != nil {
 		return "", err
 	}
@@ -41,6 +42,7 @@ func applyTemplate(f *descriptor.File, opts Options) (string, error) {
 
 type tplHeader struct {
 	*descriptor.File
+	Options
 }
 
 type tplMessage struct {
@@ -68,7 +70,7 @@ package {{.GoPkg.Name}}
 import (
 	"bytes"
 
-	"github.com/golang/protobuf/jsonpb"
+	jsonpb "{{.JSONPBLib}}"
 )
 `))
 
